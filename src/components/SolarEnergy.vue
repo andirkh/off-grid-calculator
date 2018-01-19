@@ -10,8 +10,8 @@
     <br />
     <label>Lama Charging per hari (sun hours/day):</label>
     <input type="number" v-model.number="sunHours" placeholder="Lama charging dalam sehari (jam)" />
-    <p>Produksi Daya/hari : {{ dailyPowerProduction }} Watt</p>
-    <p>Produksi Daya/tahun : {{ yearlyEnergyCreation }} Watt</p>
+    <p>Produksi Daya/hari : {{ dailyPowerProduction }} Wh</p>
+    <p>Produksi Daya/tahun : {{ yearlyEnergyCreation }} Wh/y</p>
 
     <br />
 
@@ -76,7 +76,7 @@
     </select>
     <br />
     <p>Total Biaya Sistem: {{ formatMoney(systemCost) }}</p>
-    <p>Nilai Produksi per-tahun: {{ formatMoney(yearlyValueCreation) }}</p>
+    <p>Nilai Produksi/tahun: {{ formatMoney(yearlyValueCreation) }}</p>
     <p>Balik Modal pada tahun ke {{ isNaN(systemPaybackPeriod) ? 0 : systemPaybackPeriod.toString().slice(0,3) }}</p>
   </div>
 </template>
