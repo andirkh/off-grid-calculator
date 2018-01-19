@@ -1,36 +1,51 @@
 <template>
   <div class="finder left">
     <div class="form-box">
+
+      <p>Pada penasaran gak sih, "worth it gak kita pasang solar panel?". Jangan-jangan setelah pasang, hasilnya sama aja atau gak signifikan bgt terhadap duit investasi yg kita keluarkan buat bangun sistem tersebut. Daripada ragu, cobain yuk kalkulator ini. Coba isi dengan data serealistis mungkin.</p>
+
+      <br />
+
       <h2>Produksi Daya</h2>
       <label class="label-form">Daya Solar Panel total (Watt):</label>
       <input class="big-input"
         type="number"
         v-model.number="solarPanelWatt"
-
-        placeholder="Daya solar panel keseluruhan setelah dirangkai" />
+        placeholder="Masukin Daya solar panel keseluruhan setelah dirangkai" />
+      <p class="small-text">*tips: Solar panel dipasaran ada yg 100W dan bisa kamu rangkai jadi 500W misalnya.</p>
       <br />
+
       <label class="label-form">Lama Charging per hari (sun hours/day):</label>
-      <input class="big-input"  type="number" v-model.number="sunHours" placeholder="Lama charging dalam sehari (jam)" />
+      <input class="big-input" max="24"  type="number" v-model.number="sunHours" placeholder="Masukin Lama charging dalam sehari (jam)" />
+      <p class="small-text" v-if="sunHours < 24">*tips: Biasanya 5jam sudah standar, pastinya tdk mungkin diatas 24jam kalo dipasang di Bumi.</p>
+      <p class="small-text" style="color: #ef567a" v-if="sunHours > 24">*DI BUMI MAKSIMAL SEHARI CUMA 24JAM BOSQUU</p>
+
+      <br />
       <p>Produksi Daya/hari : <strong>{{ dailyPowerProduction }} Wh</strong></p>
       <p>Produksi Daya/tahun : <strong>{{ yearlyEnergyCreation }} Wh/y</strong></p>
 
       <br />
 
-      <h2>Investasi: </h2>
+      <h2>Investasi </h2>
       <label class="label-form"> Harga Solar Panel: </label>
-      <input class="big-input"  type="number" v-model.number="solarPanelPrice" placeholder="Harga Solar Panel Keseluruhan" />
+      <input class="big-input"  type="number" v-model.number="solarPanelPrice" placeholder="Masukin Harga Solar Panel Keseluruhan" />
+      <p class="small-text">*tips: Coba research layaknya dikasih harga berapa kalo daya total solar panelnya {{solarPanelWatt}}</p>
       <br />
       <label class="label-form"> Harga Solar Controller: </label>
-      <input class="big-input"  type="number" v-model.number="controllerPrice" placeholder="Harga Controller" />
+      <input class="big-input"  type="number" v-model.number="controllerPrice" placeholder="Masukin Harga Controller" />
+      <p class="small-text">*tips: Biasanya sih 600.000 udah dapet bagus.</p>
       <br />
       <label class="label-form"> Harga Baterai: </label>
-      <input class="big-input"  type="number" v-model.number="batteryPrice" placeholder="Harga Baterai/Aki Keseluruhan" />
+      <input class="big-input"  type="number" v-model.number="batteryPrice" placeholder="Masukin Harga Baterai/Aki Keseluruhan" />
+      <p class="small-text">*tips: Coba di kira-kira kalo daya dari solar panel {{solarPanelWatt}}, kira-kira cocok sama aki harga seberapa.</p>
       <br />
       <label class="label-form"> Harga Inverter: </label>
-      <input class="big-input"  type="number" v-model.number="inverterPrice" placeholder="Harga Inverter" />
+      <input class="big-input"  type="number" v-model.number="inverterPrice" placeholder="Masukin Harga Inverter" />
+      <p class="small-text">*tips: Biasanya 1,4jt udah dapet Inverter yg Pure Sine Wave.</p>
       <br />
-      <label class="label-form"> Harga Komponen Lain: </label>
-      <input class="big-input"  type="number" v-model.number="miscPrice" placeholder="Harga Komponen Lain" />
+      <label class="label-form"> Harga Komponen Lain dan Jasa: </label>
+      <input class="big-input"  type="number" v-model.number="miscPrice" placeholder="Masukin Harga Komponen Lain" />
+      <p class="small-text">*tips: Harga kabel, dan harga-harga tidak terduga lain seperti biaya pemasangan.</p>
       <br />
       <label class="label-form">TDL PLN</label>
       <select v-model="tdlPLN" class="big-input">
@@ -78,7 +93,21 @@
       <br />
       <p>Total Biaya Sistem: <strong>{{ formatMoney(systemCost) }}</strong> (cost)</p>
       <p>Nilai Produksi Daya/tahun: <strong>{{ formatMoney(yearlyValueCreation) }}</strong> (income)</p>
-      <p>Balik Modal pada tahun ke <strong>{{ isNaN(systemPaybackPeriod) ? 0 : systemPaybackPeriod.toString().slice(0,3) }}</strong></p>
+      <p>Balik Modal pada tahun ke <strong>{{ isNaN(systemPaybackPeriod) ? 0 : systemPaybackPeriod.toString().slice(0,3) }}</strong> <button v-on:click="seeInsight" v-if="systemCost > 0">maksudnya?</button></p>
+
+      <br />
+
+      <div v-if="insightOpen">
+        <h2>Maksudnya</h2>
+        <p>Dari data perkiraan yg kamu isi, biaya yg dibutuhkan untuk membangun sistem tersebut adalah sekitar <strong>{{formatMoney(systemCost)}}</strong>. Tiap tahun, sistemmu dapat menghasilkan listrik yg jika dirupiahin bisa sekitar <strong>{{ formatMoney(yearlyValueCreation) }}</strong> relatif terhadap TDL PLN yg sedang kamu pakai sekarang. Jadi sekitar... ya kira-kira {{(yearlyValueCreation / systemCost * 100).toString().slice(0,5)}}% lah dari modalmu akan kembali tiap tahun. Oleh karena itu, dibutuhkan waktu {{systemPaybackPeriod.toString().slice(0,3)}} tahun agar modalmu kembali. </p>
+
+        <p>Setelah modalmu kembali, kamu baru bisa benar-benar menghemat tagihan listrikmu dan mendapatkan benefit yg sebenarnya. Solar panelmu akan menghemat pengeluaran listrik senilai <strong>{{ formatMoney(Math.round(yearlyValueCreation / 12)) }}</strong> perbulannya. Lumayan?</p>
+
+        <br />
+        <br />
+
+        <button class="create-button" v-on:click="sebentar">Aduh, saya penasaran</button>
+      </div>
     </div>
   </div>
 </template>
@@ -88,6 +117,7 @@ export default {
   name: 'SolarEnergy',
   data () {
     return {
+      insightOpen: false,
       sunHours: null,
       solarPanelWatt: null,
 
@@ -102,6 +132,12 @@ export default {
     }
   },
   methods: {
+    sebentar: function(){
+      alert("sebentar sabar ya, masih saya buatin page selanjutnya, hehe.")
+    },
+    seeInsight: function(){
+      this.insightOpen = true;
+    },
     formatMoney: function(a){
       if (a === 0) {
     		return "0"

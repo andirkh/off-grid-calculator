@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1 style="text-align: center">Off-Grid</h1>
+    <h1 style="text-align: center">Off-Grid Calculator</h1>
     <router-view/>
   </div>
 </template>
@@ -24,6 +24,7 @@ export default {
 html, body {
   height: 100%;
   background: white;
+  line-height: 1.7;
 }
 
 * {
@@ -52,6 +53,13 @@ html, body {
   text-align: left;
 }
 
+.small-text {
+  color: #aaa;
+  font-size: .73em;
+  margin: 0;
+  font-style: italic;
+}
+
 .label-form {
   font-size: 1em;
   margin-bottom: 15px;
@@ -69,6 +77,24 @@ html, body {
 }
 .big-input:focus {
   border: 4px solid #00ffb9;
+}
+
+.create-button {
+  width: 100%;
+  padding: 35px;
+  color:white;
+  font-weight: bold;
+  font-size: 1.3em;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: linear-gradient(to right, #00c6ff, #0072ff );
+  border-radius: 5px;
+}
+
+.create-button:hover {
+  background: linear-gradient(to left, #00c6ff, #0072ff );
+  transform: translateY(2px);
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -93,6 +119,8 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
+
+
 @media (max-width: 940px){
   .finder {
     width: 100%;
