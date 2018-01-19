@@ -126,7 +126,7 @@ export default {
       return 365 * Number(this.sunHours) * Number(this.solarPanelWatt)
     },
     yearlyValueCreation: function(){
-      return Number(this.yearlyEnergyCreation) * Number(this.tdlPLN)
+      return Math.round(Number(this.yearlyEnergyCreation) * Number(this.tdlPLN))
     },
     systemPaybackPeriod: function(){
       return Number(this.systemCost) / Number(this.yearlyValueCreation)
