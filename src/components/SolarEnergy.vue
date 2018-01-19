@@ -31,6 +31,50 @@
     <label> Harga Komponen Lain </label>
     <input type="number" v-model.number="miscPrice" placeholder="Harga Komponen Lain" />
     <br />
+    <label>TDL PLN</label>
+    <select v-model="tdlPLN">
+      <option disabled value="">Rumah Tangga R1:</option>
+      <option v-bind:value="0.415">R-1/450 VA (Subsidi)</option>
+      <option v-bind:value="0.586">R-1/900 VA (Subsidi)</option>
+      <option v-bind:value="1.352">R-1/900 VA-RTM (Rumah Tangga Mampu)</option>
+      <option v-bind:value="1.46728">R-1/1300 VA</option>
+      <option v-bind:value="1.46728">R-1/2200 VA</option>
+      <option v-bind:value="1.46728">R-2/3500 VA, 4400 VA, 5500 VA</option>
+      <option v-bind:value="1.46728">R-3/6600 VA ke atas</option>
+
+      <option disabled value="">Bisnis B1 (Subsidi):</option>
+      <option v-bind:value="0.535">B-1/450 VA</option>
+      <option v-bind:value="0.63">B-1/900 VA</option>
+      <option v-bind:value="0.966">B-1/1300 VA</option>
+      <option v-bind:value="1.1">B-1/2200 VA</option>
+      <option v-bind:value="1.1">B-1/3500 VA</option>
+      <option v-bind:value="1.1">B-1/4400 VA</option>
+      <option v-bind:value="1.1">B-1/5500 VA</option>
+
+      <option disabled value="">Sosial (Subsidi):</option>
+      <option v-bind:value="0.325">S-2/450 VA	</option>
+      <option v-bind:value="0.455">S-2/900 VA</option>
+      <option v-bind:value="0.708">S-2/1300 VA</option>
+      <option v-bind:value="0.76">S-2/2200 VA</option>
+      <option v-bind:value="0.9">S-2/3500 VA s.d 200 kVA</option>
+
+      <option disabled value="">Industri (Subsidi):</option>
+      <option v-bind:value="0.485">I-1/450 VA</option>
+      <option v-bind:value="0.6">I-1/900 VA</option>
+      <option v-bind:value="0.93">I-1/1300 VA</option>
+      <option v-bind:value="0.96">I-1/2200 VA</option>
+      <option v-bind:value="1.112">I-1/3500 VA s.d 14 kVA</option>
+
+      <option disabled value="">Publik (Subsidi):</option>
+      <option v-bind:value="0.685">P-1/450 VA</option>
+      <option v-bind:value="0.76">P-1/900 VA</option>
+      <option v-bind:value="1.049">P-1/1300 VA</option>
+      <option v-bind:value="1.076">P-1/2200 VA</option>
+      <option v-bind:value="1.076">P-1/3500 VA</option>
+      <option v-bind:value="1.076">P-1/4400 VA</option>
+      <option v-bind:value="1.076">P-1/5500 VA</option>
+    </select>
+    <br />
     <p>Total Biaya Sistem: {{ formatMoney(systemCost) }}</p>
     <p>Nilai Produksi per-tahun: {{ formatMoney(yearlyValueCreation) }}</p>
     <p>Balik Modal pada tahun ke {{ isNaN(systemPaybackPeriod) ? 0 : systemPaybackPeriod.toString().slice(0,3) }}</p>
