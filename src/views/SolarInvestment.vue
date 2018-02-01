@@ -1,8 +1,9 @@
 <template>
   <div class="finder left">
+      <h1 style="text-align: center">Off-Grid Investment</h1>
     <div class="form-box">
 
-      <p>Pada penasaran gak sih, "worth it gak kita pasang solar panel?". Jangan-jangan setelah pasang, hasilnya sama aja atau gak signifikan bgt terhadap duit investasi yg kita keluarkan buat bangun sistem tersebut. Daripada ragu, cobain yuk kalkulator ini. Coba isi dengan data serealistis mungkin.</p>
+      <p>Hobi atau ingin memasang DIY solar panel? atau penasaran tentang biaya investasi yg dikeluarkan serta kapan mbaliknya? ini kalkulator untukmu.</p>
 
       <br />
 
@@ -114,7 +115,7 @@
 
 <script>
 export default {
-  name: 'SolarEnergy',
+  name: 'SolarInvestment',
   data () {
     return {
       insightOpen: false,

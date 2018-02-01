@@ -1,13 +1,18 @@
 <template>
   <div id="app">
-    <h1 style="text-align: center">Off-Grid Calculator</h1>
+    <Header></Header>
     <router-view/>
   </div>
 </template>
 
 <script>
+import Header from '@/components/Header.vue'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    Header
+  }
 }
 </script>
 
@@ -16,15 +21,16 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 50px;
 }
 
 html, body {
   height: 100%;
   background: white;
   line-height: 1.7;
+  margin: 0;
+  text-align: center
 }
 
 * {
