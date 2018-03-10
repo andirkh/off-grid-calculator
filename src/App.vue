@@ -1,17 +1,19 @@
 <template>
   <div id="app">
-    <Header></Header>
-    <router-view/>
+    <BigImage />
+    <SolarInvestment />
   </div>
 </template>
 
 <script>
-import Header from '@/components/Header.vue'
+import BigImage from '@/components/BigImage.vue'
+import SolarInvestment from '@/components/SolarInvestment'
 
 export default {
   name: 'App',
   components: {
-    Header
+    BigImage,
+    SolarInvestment
   }
 }
 </script>
@@ -49,7 +51,6 @@ html, body {
   background-color: white;
   border-radius: 9px;
   width: 700px;
-  min-height: 800px;
   padding: 25px;
   box-sizing: border-box;
   margin: 0 auto;

@@ -1,8 +1,7 @@
 <template>
   <div class="finder left">
-    <h1 style="text-align: center">Off-Grid Solar System</h1>
     <div class="form-box">
-      <img src="static/solar-diagram.svg" />
+      <img src="static/solar-diagram.svg" style="width: 100%" />
     </div>
   </div>
 </template>
@@ -10,7 +9,7 @@
 <script>
 
 export default {
-  name: 'Home'
+  name: 'BigImage'
 }
 </script>
 
